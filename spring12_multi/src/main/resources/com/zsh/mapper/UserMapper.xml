@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsh.mapper.UserMapper">
+    <resultMap id="UserMap" type="user">
+
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+
+<!--        配置集合信息
+            propery 集合名称
+            ofType 当前集合中的数据类型-->
+        <collection property="orderList" ofType="order">
+            <id column="id" property="id"/>
+            <result column="ordertime" property="ordertime"/>
+            <result column="total" property="tolal"/>
+
+        </collection>
+    </resultMap>
+
+    <select id="selectAll" resultMap="UserMap">
+
+        select *,o.id oid from tb_user u,orders o where u.id=o.uid;
+    </select>
+
+
+
+
+    <resultMap id="userRoleMap" type="User">
+
+
+        <id column="userId" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <collection property="roleList" ofType="role">
+            <id column="roleId" property="id"/>
+            <result column="roleName" property="roleName"/>
+            <result column="roleDesc" property="roleDesc"/>
+        </collection>
+
+    </resultMap>
+    <select id="findUserAndRole" resultMap="userRoleMap">
+#         select * from tb_user u ,sys_user_role ur,sys_role r where u.id=ur.userId and ur.roleId=r.id
+        select * from tb_user u LEFT JOIN sys_user_role ur LEFT JOIN sys_role r on  ur.roleId=r.id on (u.id=ur.userid )
+    </select>
+</mapper>

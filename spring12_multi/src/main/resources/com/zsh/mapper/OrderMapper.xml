@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsh.mapper.OrderMapper">
+    <resultMap id="OrderMap" type="order">
+        <!--手动指定字段与实体属性的映射关系-->
+        <result column="oid" property="id"/>
+        <result column="ordertime" property="ordertime"/>
+        <result column="total" property="tolal"/>
+<!--        <result column="uid" property="user.id"/>-->
+<!--        <result column="username" property="user.username"/>-->
+<!--        <result column="password" property="user.password"/>-->
+<!--        <result column="birthday" property="user.date"/>-->
+<!--        property 当前实体（Order）中的属性名称(private User user) javaType 当前实体中的属性的类型-->
+        <association property="user" javaType="user">
+            <result column="uid" property="id"/>
+            <result column="username" property="username"/>
+            <result column="password" property="password"/>
+            <result column="birthday" property="date"/>
+        </association>
+    </resultMap>
+    <select id="selectAll" resultMap="OrderMap">
+
+
+        select * ,o.id oid from orders o,tb_user u where o.uid=u.id;
+    </select>
+</mapper>

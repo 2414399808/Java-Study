@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+<!--                1无参构造器获取bean对象      -->
+<!--    <bean id="userDao" class="com.zsh.dao.impl.UserDaoImpl" init-method="init" destroy-method="destory"></bean>-->
+<!--                2静态工厂方法获取bean对象-->
+<!--    <bean id="userDao" class="com.zsh.factory.StaticFactory" factory-method="getUserDao"></bean>-->
+<!--                3实例工厂方法获取bean对象-->
+<!--    <bean id="dyFactory" class="com.zsh.factory.DyFactory"></bean>-->
+<!--    <bean id="userDao" class="com.zsh.factory.DyFactory" factory-bean="dyFactory" factory-method="getUserDao"></bean>-->
+    <bean id="user1" class="com.zsh.domain.User">
+        <property name="name" value="tom"></property>
+        <property name="addr" value="北京"></property>
+    </bean>
+    <bean id="user2" class="com.zsh.domain.User">
+        <property name="name" value="jerry"></property>
+        <property name="addr" value="上海"></property>
+    </bean>
+    <bean id="user3" class="com.zsh.domain.User">
+        <property name="name" value="lili"></property>
+        <property name="addr" value="重庆"></property>
+    </bean>
+    <bean id="userDao" class="com.zsh.dao.impl.UserDaoImpl" >
+        <property name="username" value="zhangsan"></property>
+        <property name="age" value="18"></property>
+        <property name="strList">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+        </property>
+        <property name="userMap">
+            <map>
+                <entry key="user1" value-ref="user1"> </entry>
+                <entry key="user2" value-ref="user2"> </entry>
+                <entry key="user3" value-ref="user3"> </entry>
+
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="p1">
+                    ppp1
+                </prop>
+                <prop key="p2">
+                    ppp2
+                </prop>
+            </props>
+        </property>
+    </bean>
+<!--            1set方法获取UserDao-->
+<!--    <bean id="userService" class="com.zsh.service.impl.UserServiceImpl" >-->
+<!--        <property name="userDao" ref="userDao"></property>-->
+<!--    </bean>-->
+<!--            2构造器方法获取UserDao-->
+        <bean id="userService" class="com.zsh.service.impl.UserServiceImpl" >
+            <constructor-arg name="userDao" ref="userDao"></constructor-arg>
+        </bean>
+
+
+<!--    引入配置文件的方法-->
+    <import resource="applicationContext-user.xml"/>
+    <import resource="applicationContext-product.xml"/>
+</beans>

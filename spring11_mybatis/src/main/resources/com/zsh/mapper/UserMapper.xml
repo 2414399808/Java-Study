@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zsh.mapper.UserMapper">
+  
+    <resultMap id="userMap" type="user"/>
+    <insert id="addUser">
+        insert into tb_user (username, password)
+        values (#{username},#{password});
+    </insert>
+    <insert id="save">
+        insert into tb_user
+        values (null,#{username},#{password},#{birthday});
+    </insert>
+    <select id="selectAll" resultMap="userMap">
+        select *
+        from tb_user
+    </select>
+
+
+</mapper>

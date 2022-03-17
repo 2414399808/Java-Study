@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="spring05_test:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>false</exploded>
+        <module>spring05_test</module>
+        <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
+      </options>
+    </properties>
+    <root id="archive" name="spring05_test-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="spring05_test:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="brand1" class="com.zsh.domain.Brand">
+        <property name="name" value="zz"/>
+        <property name="price" value="12"/>
+    </bean>
+    <bean id="brand2" class="com.zsh.domain.Brand">
+        <property name="name" value="zz"/>
+        <property name="price" value="12"/>
+    </bean>
+    <bean id="brand3" class="com.zsh.domain.Brand">
+        <property name="name" value="zz"/>
+        <property name="price" value="12"/>
+    </bean>
+    <bean id="brandDao" class="com.zsh.dao.impl.BrandDaoImpl">
+        <property name="name" value="zhangsan"/>
+        <property name="age" value="18"/>
+        <property name="strList">
+            <list>
+                <value> 12</value>
+                <value> 12</value>
+                <value> 12</value>
+            </list>
+        </property>
+        <property name="brandMap">
+            <map>
+                <entry key="map1" value-ref="brand1"/>
+                <entry key="map1" value-ref="brand2"/>
+                <entry key="map1" value-ref="brand3"/>
+            </map>
+        </property>
+        <property name="prop">
+            <props>
+                <prop key="1">11</prop>
+                <prop key="2">11</prop>
+                <prop key="3">11</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="brandService" class="com.zsh.service.impl.BrandServiceImpl">
+        <property name="brandDao" ref="brandDao"/>
+    </bean>
+
+</beans>
